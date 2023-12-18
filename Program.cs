@@ -15,3 +15,33 @@ string ReversString(string str)
 }
 string revStr = ReversString(str);
 Console.WriteLine(revStr);
+//Вариант 2
+string ReversString02(string str)
+{
+    //int spaceCount = str.Count();
+    //Console.WriteLine(spaceCount);
+    string[] arr = new string[0];
+    int start = 0;
+    int countWord = 0;
+    for (int i = 0; i < str.Length; i++)
+    {
+        if (str[i].ToString() == " ")
+        {
+            Array.Resize(ref arr, arr.Length+1);
+            arr[countWord] = str.Substring(start, i - start);
+            countWord++;
+            start = i+1;
+        }
+    }
+    Array.Resize(ref arr, arr.Length+1);
+    arr[countWord] = str.Substring(start);
+    string result = String.Empty;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        result += arr[arr.Length-i-1] + " ";
+    }
+    result = result.Trim();
+    return result;
+}
+string revStr02 = ReversString02(str);
+Console.WriteLine(revStr02);
